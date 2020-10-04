@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "scholars_research_library"
