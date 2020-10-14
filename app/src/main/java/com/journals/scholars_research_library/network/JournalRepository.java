@@ -10,6 +10,7 @@ import com.journals.scholars_research_library.model.ArchiveResponse;
 import com.journals.scholars_research_library.model.CategoryResponse;
 import com.journals.scholars_research_library.model.ContactResponse;
 import com.journals.scholars_research_library.model.CurrentIssueResponse;
+import com.journals.scholars_research_library.model.EditorialBoardResponse;
 import com.journals.scholars_research_library.model.InPressResponse;
 import com.journals.scholars_research_library.model.JournalHomeResponse;
 import com.journals.scholars_research_library.model.JournalsListResponse;
@@ -329,6 +330,38 @@ public class JournalRepository {
                     toastMessageObserver.setValue(t.getMessage());
                 }
                 //categoryData.setValue(null);
+                progressbarObservable.setValue(false);
+            }
+        });
+        return categoryData;
+    }
+
+    //add contact data response
+    public MutableLiveData<EditorialBoardResponse> getEditorialData(JsonObject jsonObject) {
+        progressbarObservable.setValue(true);
+        MutableLiveData<EditorialBoardResponse> categoryData = new MutableLiveData<>();
+        newsApi.getEditorialList(jsonObject).enqueue(new Callback<EditorialBoardResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<EditorialBoardResponse> call, @NotNull Response<EditorialBoardResponse> response) {
+
+                if (response.isSuccessful()) {
+                    progressbarObservable.setValue(false);
+                    categoryData.setValue(response.body());
+
+                } else {
+                    progressbarObservable.setValue(false);
+                    toastMessageObserver.setValue("Something unexpected happened to our request: " + response.message()); // Whenever you want to show toast use setValue.
+
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<EditorialBoardResponse> call, @NotNull Throwable t) {
+                if (t instanceof NoConnectivityException) {
+                    // show No Connectivity message to user or do whatever you want.
+                    toastMessageObserver.setValue(t.getMessage());
+                }
+                //  categoryData.setValue(null);
                 progressbarObservable.setValue(false);
             }
         });

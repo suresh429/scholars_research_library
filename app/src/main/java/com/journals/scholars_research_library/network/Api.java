@@ -6,6 +6,7 @@ import com.journals.scholars_research_library.model.ArchiveResponse;
 import com.journals.scholars_research_library.model.CategoryResponse;
 import com.journals.scholars_research_library.model.ContactResponse;
 import com.journals.scholars_research_library.model.CurrentIssueResponse;
+import com.journals.scholars_research_library.model.EditorialBoardResponse;
 import com.journals.scholars_research_library.model.InPressResponse;
 import com.journals.scholars_research_library.model.JournalHomeResponse;
 import com.journals.scholars_research_library.model.JournalsListResponse;
@@ -59,5 +60,8 @@ public interface Api {
     Call<ContactResponse> getContactDisplay(@Body JsonObject jsonObject);
 
 
+    @Headers("Content-Type: application/json")
+    @POST("editorialboardapi.php")
+    Call<EditorialBoardResponse> getEditorialList(@Body JsonObject jsonObject);
 
 }

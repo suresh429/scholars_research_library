@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_dashBoardFragment_to_journalContactFragment"
             app:destination="@id/journalContactFragment" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_editorialBoardFragment"
+            app:destination="@id/editorialBoardFragment" />
 
     </fragment>
     <fragment
@@ -113,6 +116,19 @@
         android:id="@+id/journalContactFragment"
         android:name="com.journals.scholars_research_library.ui.fragments.JournalContactFragment"
         android:label="Contact Us" />
+    <fragment
+        android:id="@+id/editorialBoardFragment"
+        android:name="com.journals.scholars_research_library.ui.fragments.EditorialBoardFragment"
+        android:label="EditorialBoardFragment" >
+        <action
+            android:id="@+id/action_editorialBoardFragment_to_biographyResearchFragment"
+            app:destination="@id/biographyResearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/biographyResearchFragment"
+        android:name="com.journals.scholars_research_library.ui.fragments.BiographyResearchFragment"
+        android:label="fragment_biography_research"
+        tools:layout="@layout/fragment_biography_research" />
 
 
 </navigation>
